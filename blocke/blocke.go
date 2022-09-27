@@ -21,7 +21,7 @@ type Blockes struct {
 
 func NewBlocke() *Blocke {
 	time := time.Now()
-	return &Blocke{Index: 0, Time: time.String(), Bpm: 0, Hash: "", PrevHash: ""}
+	return &Blocke{Index: 0, Time: time.String(), Bpm: 35, Hash: "", PrevHash: ""}
 }
 
 func NewBlockes() *Blockes {

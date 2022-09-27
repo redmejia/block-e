@@ -26,4 +26,10 @@ func main() {
 		fmt.Println("prev ", v.PrevHash)
 		fmt.Println("========")
 	}
+	// handler config
+	// api := handler.Api{
+	// 	Blocke:  blocke.NewBlocke(),
+	// 	Blockes: blocke.NewBlockes(),
+	// }
+
 }
