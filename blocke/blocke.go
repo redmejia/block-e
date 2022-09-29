@@ -25,15 +25,16 @@ func NewBlocke() *Blocke {
 }
 
 func NewBlockes() *Blockes {
-	return &Blockes{B: []Blocke{}}
+	t := time.Now()
+	return &Blockes{B: []Blocke{{Index: 0, Time: t.String(), Bpm: 53, Hash: "", PrevHash: ""}}}
 }
 
 func (bs *Blockes) AddBlock(newBlock ...Blocke) {
 	bs.B = append(bs.B, newBlock...)
 }
 
-// CalculateBlocke
-func CalculateBlocke(b Blocke) string {
+// calculateBlocke
+func calculateBlocke(b Blocke) string {
 
 	bIndx := strconv.Itoa(b.Index)
 	bBpm := strconv.Itoa(b.Bpm)
@@ -48,14 +49,14 @@ func CalculateBlocke(b Blocke) string {
 }
 
 // replaceChain
-func (bs *Blockes) replaceChain(newBlock []Blocke) {
+func (bs *Blockes) ReplaceChain(newBlock []Blocke) {
 	if len(newBlock) > len(bs.B) {
 		bs.B = newBlock
 	}
 }
 
 // checkBlock
-func checkBlock(newBlock *Blocke, oldBlock *Blocke) bool {
+func CheckBlock(newBlock *Blocke, oldBlock *Blocke) bool {
 	if newBlock.Index+1 != oldBlock.Index {
 		return false
 	}
@@ -64,7 +65,7 @@ func checkBlock(newBlock *Blocke, oldBlock *Blocke) bool {
 		return false
 	}
 
-	if CalculateBlocke(*newBlock) != newBlock.Hash {
+	if calculateBlocke(*newBlock) != newBlock.Hash {
 		return false
 	}
 
@@ -81,7 +82,7 @@ func (b *Blocke) GenerateNewBlock(old *Blocke, Bpm int) *Blocke {
 	newBlock.Time = t.String()
 	newBlock.Bpm = Bpm
 	newBlock.PrevHash = old.Hash
-	newBlock.Hash = CalculateBlocke(newBlock)
+	newBlock.Hash = calculateBlocke(newBlock)
 
 	return &newBlock
 }
