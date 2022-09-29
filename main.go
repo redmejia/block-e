@@ -8,14 +8,6 @@ import (
 	"net/http"
 )
 
-// func Router(api *handler.Api) http.Handler {
-// 	mux := http.NewServeMux()
-
-// 	mux.HandleFunc("/", api.HandleNewBlock)
-
-// 	return mux
-// }
-
 func main() {
 
 	api := handler.Api{
